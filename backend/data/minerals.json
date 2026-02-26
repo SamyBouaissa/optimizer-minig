@@ -1,0 +1,19 @@
+[
+  { "id": "fer", "name": "Fer", "level": 1, "type": "Minerai", "dofusdbId": 38901 },
+  { "id": "cuivre", "name": "Cuivre", "level": 20, "type": "Minerai", "dofusdbId": 38903 },
+  { "id": "bronze", "name": "Bronze", "level": 40, "type": "Minerai", "dofusdbId": 38905 },
+  { "id": "kobalte", "name": "Kobalte", "level": 60, "type": "Minerai", "dofusdbId": 38907 },
+  { "id": "charbon", "name": "Charbon", "level": 65, "type": "Minerai", "dofusdbId": 38917 },
+  { "id": "manganese", "name": "Manganèse", "level": 80, "type": "Minerai", "dofusdbId": 38909 },
+  { "id": "silicate", "name": "Silicate", "level": 100, "type": "Minerai", "dofusdbId": 38919 },
+  { "id": "etain", "name": "Étain", "level": 100, "type": "Minerai", "dofusdbId": 38911 },
+  { "id": "argent", "name": "Argent", "level": 120, "type": "Minerai", "dofusdbId": 38915 },
+  { "id": "bauxite", "name": "Bauxite", "level": 140, "type": "Minerai", "dofusdbId": 38913 },
+  { "id": "or", "name": "Or", "level": 160, "type": "Minerai", "dofusdbId": 39022 },
+  { "id": "dolomite", "name": "Dolomite", "level": 180, "type": "Minerai", "dofusdbId": 38921 },
+  { "id": "cendrepierre", "name": "Cendrepierre", "level": 180, "type": "Minerai", "dofusdbId": 38953 },
+  { "id": "obsidienne", "name": "Obsidienne", "level": 200, "type": "Minerai", "dofusdbId": 38923 },
+  { "id": "cristal-pliable", "name": "Cristal pliable", "level": 200, "type": "Minerai", "dofusdbId": 38955 },
+  { "id": "cristal-liquide", "name": "Cristal liquide", "level": 200, "type": "Minerai", "dofusdbId": 38957 },
+  { "id": "ecume-de-mer", "name": "Écume de mer", "level": 200, "type": "Minerai", "dofusdbId": 38959 }
+]

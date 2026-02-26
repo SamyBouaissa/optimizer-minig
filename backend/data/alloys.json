@@ -1,0 +1,185 @@
+[
+  {
+    "id": "ferrite",
+    "name": "Ferrite",
+    "level": 1,
+    "minerLevel": 1,
+    "type": "Alliage",
+    "dofusdbId": 8155,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "aluminite",
+    "name": "Aluminite",
+    "level": 20,
+    "minerLevel": 1,
+    "type": "Alliage",
+    "dofusdbId": 8154,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "ebonite",
+    "name": "Ébonite",
+    "level": 40,
+    "minerLevel": 40,
+    "type": "Alliage",
+    "dofusdbId": 8158,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 },
+      { "mineralId": "bronze", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "magnesite",
+    "name": "Magnésite",
+    "level": 60,
+    "minerLevel": 20,
+    "type": "Alliage",
+    "dofusdbId": 8156,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 },
+      { "mineralId": "bronze", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "bakelelite",
+    "name": "Bakélélite",
+    "level": 80,
+    "minerLevel": 40,
+    "type": "Alliage",
+    "dofusdbId": 8157,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 },
+      { "mineralId": "bronze", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 10 },
+      { "mineralId": "manganese", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "kouartz",
+    "name": "Kouartz",
+    "level": 100,
+    "minerLevel": 60,
+    "type": "Alliage",
+    "dofusdbId": 7036,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 },
+      { "mineralId": "bronze", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 10 },
+      { "mineralId": "etain", "quantity": 10 },
+      { "mineralId": "manganese", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "plaque-acier",
+    "name": "Plaque d'acier",
+    "level": 100,
+    "minerLevel": 100,
+    "type": "Alliage",
+    "dofusdbId": 17840,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 5 },
+      { "mineralId": "etain", "quantity": 25 },
+      { "mineralId": "silicate", "quantity": 10 },
+      { "mineralId": "argent", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 5 }
+    ]
+  },
+  {
+    "id": "kriptonite",
+    "name": "Kriptonite",
+    "level": 120,
+    "minerLevel": 80,
+    "type": "Alliage",
+    "dofusdbId": 7037,
+    "recipe": [
+      { "mineralId": "fer", "quantity": 10 },
+      { "mineralId": "argent", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 },
+      { "mineralId": "bronze", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 10 },
+      { "mineralId": "etain", "quantity": 10 },
+      { "mineralId": "manganese", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "kobalite",
+    "name": "Kobalite",
+    "level": 140,
+    "minerLevel": 140,
+    "type": "Alliage",
+    "dofusdbId": 17839,
+    "recipe": [
+      { "mineralId": "bauxite", "quantity": 5 },
+      { "mineralId": "silicate", "quantity": 10 },
+      { "mineralId": "argent", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 5 },
+      { "mineralId": "etain", "quantity": 10 },
+      { "mineralId": "dolomite", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "rutile",
+    "name": "Rutile",
+    "level": 160,
+    "minerLevel": 160,
+    "type": "Alliage",
+    "dofusdbId": 7039,
+    "recipe": [
+      { "mineralId": "or", "quantity": 10 },
+      { "mineralId": "argent", "quantity": 5 },
+      { "mineralId": "bauxite", "quantity": 5 },
+      { "mineralId": "silicate", "quantity": 10 },
+      { "mineralId": "dolomite", "quantity": 10 },
+      { "mineralId": "etain", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "pyrute",
+    "name": "Pyrute",
+    "level": 180,
+    "minerLevel": 100,
+    "type": "Alliage",
+    "dofusdbId": 7038,
+    "recipe": [
+      { "mineralId": "argent", "quantity": 10 },
+      { "mineralId": "cuivre", "quantity": 10 },
+      { "mineralId": "bronze", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 10 },
+      { "mineralId": "etain", "quantity": 10 },
+      { "mineralId": "manganese", "quantity": 10 },
+      { "mineralId": "bauxite", "quantity": 10 },
+      { "mineralId": "dolomite", "quantity": 10 }
+    ]
+  },
+  {
+    "id": "ardonite",
+    "name": "Ardonite",
+    "level": 200,
+    "minerLevel": 100,
+    "type": "Alliage",
+    "dofusdbId": 7040,
+    "recipe": [
+      { "mineralId": "bronze", "quantity": 10 },
+      { "mineralId": "kobalte", "quantity": 10 },
+      { "mineralId": "etain", "quantity": 10 },
+      { "mineralId": "manganese", "quantity": 10 },
+      { "mineralId": "bauxite", "quantity": 10 },
+      { "mineralId": "silicate", "quantity": 10 },
+      { "mineralId": "dolomite", "quantity": 10 },
+      { "mineralId": "obsidienne", "quantity": 10 }
+    ]
+  }
+]

@@ -2,6 +2,10 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path')
 const fs = require('fs')
+const multer = require('multer')
+const { analyzeInventoryScreenshot, invalidateCache: invalidateIconCache } = require('./analyzeScreenshot')
+
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } })
 
 const app = express()
 const PORT = 3001
@@ -101,11 +105,14 @@ app.put('/api/prices/minerals/:id', (req, res) => {
     return res.status(500).json({ error: 'Error loading data' })
   }
 
+  const timestamp = new Date().toISOString()
   // Update prices
   prices.minerals[id] = {
     x1: newPrices.x1 || 0,
     x10: newPrices.x10 || 0,
-    x100: newPrices.x100 || 0
+    x100: newPrices.x100 || 0,
+    x1000: newPrices.x1000 || 0,
+    lastUpdated: timestamp
   }
 
   // Add to history
@@ -142,11 +149,14 @@ app.put('/api/prices/alloys/:id', (req, res) => {
     return res.status(500).json({ error: 'Error loading data' })
   }
 
+  const timestamp = new Date().toISOString()
   // Update prices
   prices.alloys[id] = {
     x1: newPrices.x1 || 0,
     x10: newPrices.x10 || 0,
-    x100: newPrices.x100 || 0
+    x100: newPrices.x100 || 0,
+    x1000: newPrices.x1000 || 0,
+    lastUpdated: timestamp
   }
 
   // Add to history
@@ -366,6 +376,273 @@ function calculateOptimalStrategy(inventory, minerals, alloys, prices) {
     remainingMinerals
   }
 }
+
+// ==================
+// SUGGESTIONS ROUTE
+// ==================
+// Returns 3 levels of "what-if" suggestions:
+//   small  : alloys you're 1-10% short on (per ingredient)
+//   medium : alloys reachable with up to 25% more resources
+//   large  : convert ALL remaining minerals to best alloys possible
+app.post('/api/optimize/suggestions', (req, res) => {
+  const { inventory } = req.body
+  const minerals = readJSON(MINERALS_FILE)
+  const alloys   = readJSON(ALLOYS_FILE)
+  const prices   = readJSON(PRICES_FILE)
+  if (!minerals || !alloys || !prices) return res.status(500).json({ error: 'Error loading data' })
+
+  function getMineralUnitPrice(id) {
+    const p = prices.minerals[id]; if (!p) return 0
+    if (p.x100 > 0) return p.x100 / 100
+    if (p.x10  > 0) return p.x10  / 10
+    return p.x1 || 0
+  }
+  function getAlloyUnitPrice(id) {
+    const p = prices.alloys[id]; if (!p) return 0
+    if (p.x100 > 0) return p.x100 / 100
+    if (p.x10  > 0) return p.x10  / 10
+    return p.x1 || 0
+  }
+  function craftCost(alloy) {
+    return alloy.recipe.reduce((s, i) => s + i.quantity * getMineralUnitPrice(i.mineralId), 0)
+  }
+
+  // Run base optimisation to get remaining inventory after crafts
+  const base = calculateOptimalStrategy(inventory, minerals, alloys, prices)
+  const remaining = {}
+  // rebuild remaining from base
+  const inv = { ...inventory }
+  for (const rec of base.recommendations) {
+    if (rec.action === 'craft') {
+      const alloy = alloys.find(a => a.id === rec.itemId)
+      if (alloy) {
+        for (const ing of alloy.recipe) {
+          inv[ing.mineralId] = (inv[ing.mineralId] || 0) - ing.quantity * rec.quantity
+        }
+      }
+    }
+  }
+  Object.assign(remaining, inv)
+
+  // For each alloy with profit > 0, compute how many we could craft and what's missing
+  const profitable = alloys.map(alloy => {
+    const sp = getAlloyUnitPrice(alloy.id)
+    const cc = craftCost(alloy)
+    return { alloy, sellPrice: sp, cost: cc, profit: sp - cc }
+  }).filter(a => a.profit > 0 && a.sellPrice > 0)
+    .sort((a, b) => b.profit - a.profit)
+
+  function missingFor(alloy, inv, extraPct) {
+    const missing = {}
+    let canCraft = Infinity
+    for (const ing of alloy.recipe) {
+      const have = (inv[ing.mineralId] || 0)
+      const need = ing.quantity
+      if (have < need) missing[ing.mineralId] = need - have
+      canCraft = Math.min(canCraft, Math.floor(have / need))
+    }
+    if (canCraft === Infinity) canCraft = 0
+    // How many more could we craft if we had extraPct% more of each resource
+    const boosted = {}
+    for (const [k, v] of Object.entries(inv)) boosted[k] = Math.floor(v * (1 + extraPct))
+    let boostedCraft = Infinity
+    for (const ing of alloy.recipe) boostedCraft = Math.min(boostedCraft, Math.floor((boosted[ing.mineralId] || 0) / ing.quantity))
+    if (boostedCraft === Infinity) boostedCraft = 0
+    return { missing, canCraft, boostedCraft }
+  }
+
+  // SMALL: t'as ≥ 90% de chaque ingrédient pour 1 craft (manque ≤ 10% de chaque)
+  const small = []
+  for (const { alloy, profit } of profitable) {
+    let qualifies = true
+    const missingDetails = {}
+    let anyMissing = false
+
+    for (const ing of alloy.recipe) {
+      const have = remaining[ing.mineralId] || 0
+      const need = ing.quantity
+      const pct = need > 0 ? (need - have) / need : 0
+      if (pct > 0.10) { qualifies = false; break }
+      if (have < need) {
+        anyMissing = true
+        missingDetails[ing.mineralId] = {
+          need: need - have,
+          name: minerals.find(m => m.id === ing.mineralId)?.name || ing.mineralId,
+          pct: Math.round(pct * 100)
+        }
+      }
+    }
+
+    if (qualifies && anyMissing) {
+      const parts = Object.values(missingDetails).map(d => `${d.need} ${d.name}`).join(', ')
+      small.push({
+        alloyId: alloy.id, alloyName: alloy.name,
+        profit: Math.round(profit),
+        missing: missingDetails,
+        message: `Il te manque seulement ${parts} pour 1 craft`
+      })
+    }
+  }
+
+  // MEDIUM: t'as ≥ 75% de chaque ingrédient pour 1 craft (manque ≤ 25% de chaque)
+  const medium = []
+  for (const { alloy, profit } of profitable) {
+    let qualifies = true
+    const missingDetails = {}
+    let anyMissing = false
+
+    for (const ing of alloy.recipe) {
+      const have = remaining[ing.mineralId] || 0
+      const need = ing.quantity
+      const pct = need > 0 ? (need - have) / need : 0
+      if (pct > 0.25) { qualifies = false; break }
+      if (have < need) {
+        anyMissing = true
+        missingDetails[ing.mineralId] = {
+          need: need - have,
+          name: minerals.find(m => m.id === ing.mineralId)?.name || ing.mineralId,
+          pct: Math.round(pct * 100)
+        }
+      }
+    }
+
+    // Exclude items already in small
+    const alreadySmall = small.some(s => s.alloyId === alloy.id)
+    if (qualifies && anyMissing && !alreadySmall) {
+      // How many crafts currently possible
+      let canCraft = Infinity
+      for (const ing of alloy.recipe) canCraft = Math.min(canCraft, Math.floor((remaining[ing.mineralId] || 0) / ing.quantity))
+      if (canCraft === Infinity) canCraft = 0
+
+      medium.push({
+        alloyId: alloy.id, alloyName: alloy.name,
+        currentCraftable: canCraft,
+        boostedCraftable: canCraft + 1,
+        gainIfBoosted: Math.round(profit),
+        extraNeeded: missingDetails,
+        profitPerUnit: Math.round(profit)
+      })
+    }
+  }
+
+  // LARGE: t'as 100% de tout pour au moins 1 craft complet
+  const large = []
+  for (const { alloy, profit } of profitable) {
+    let maxC = Infinity
+    for (const ing of alloy.recipe) {
+      const have = remaining[ing.mineralId] || 0
+      maxC = Math.min(maxC, Math.floor(have / ing.quantity))
+    }
+    if (maxC === Infinity) maxC = 0
+    if (maxC >= 1) {
+      large.push({
+        alloyId: alloy.id, alloyName: alloy.name,
+        craftable: maxC,
+        totalProfit: Math.round(profit * maxC),
+        profitPerUnit: Math.round(profit),
+        missing: {}
+      })
+    }
+  }
+
+  res.json({ small, medium, large: large.slice(0, 8) })
+})
+
+// ==================
+// IMPACT ANALYSIS
+// ==================
+app.get('/api/analyze/impact', (req, res) => {
+  const minerals = readJSON(MINERALS_FILE)
+  const alloys   = readJSON(ALLOYS_FILE)
+  const prices   = readJSON(PRICES_FILE)
+  if (!minerals || !alloys || !prices) return res.status(500).json({ error: 'Error loading data' })
+
+  function getMineralUnitPrice(id) {
+    const p = prices.minerals[id]; if (!p) return 0
+    if (p.x100 > 0) return p.x100 / 100
+    if (p.x10  > 0) return p.x10  / 10
+    return p.x1 || 0
+  }
+  function getAlloyUnitPrice(id) {
+    const p = prices.alloys[id]; if (!p) return 0
+    if (p.x100 > 0) return p.x100 / 100
+    if (p.x10  > 0) return p.x10  / 10
+    return p.x1 || 0
+  }
+
+  const impact = minerals.map(mineral => {
+    const directPrice = getMineralUnitPrice(mineral.id)
+    // Which alloys use this mineral?
+    const usedIn = alloys.filter(a => a.recipe.some(i => i.mineralId === mineral.id))
+
+    const alloyUsages = usedIn.map(alloy => {
+      const sp = getAlloyUnitPrice(alloy.id)
+      const totalCost = alloy.recipe.reduce((s, i) => s + i.quantity * getMineralUnitPrice(i.mineralId), 0)
+      const qty = alloy.recipe.find(i => i.mineralId === mineral.id)?.quantity || 0
+      const ingredientCost = qty * directPrice
+      const profit = sp - totalCost
+      // Value of this mineral in this alloy context (alloy sell / total ingredients)
+      const effectiveValueInAlloy = totalCost > 0 ? (sp / totalCost) * directPrice : directPrice
+      return {
+        alloyId: alloy.id, alloyName: alloy.name,
+        quantityNeeded: qty,
+        alloyProfit: Math.round(profit),
+        alloySellPrice: Math.round(sp),
+        ingredientWeight: totalCost > 0 ? Math.round((ingredientCost / totalCost) * 100) : 0,
+        effectiveValue: Math.round(effectiveValueInAlloy),
+        isWorthCrafting: profit > 0
+      }
+    }).sort((a, b) => b.alloySellPrice - a.alloySellPrice)
+
+    // Best effective value across all usages
+    const bestAlloyUsage = alloyUsages.find(u => u.isWorthCrafting)
+    const bestEffectiveValue = bestAlloyUsage ? bestAlloyUsage.effectiveValue : directPrice
+    const worthSelling = directPrice >= bestEffectiveValue || !bestAlloyUsage
+    const gainIfCrafted = bestAlloyUsage ? Math.round(bestEffectiveValue - directPrice) : 0
+
+    return {
+      id: mineral.id, name: mineral.name, level: mineral.level,
+      directPrice: Math.round(directPrice),
+      usedInCount: usedIn.length,
+      usedIn: alloyUsages,
+      bestEffectiveValue: Math.round(bestEffectiveValue),
+      worthSelling,
+      gainIfCrafted,
+      warning: !worthSelling && gainIfCrafted > 0
+        ? `+${gainIfCrafted.toLocaleString('fr-FR')} K/unité si utilisé dans ${bestAlloyUsage?.alloyName}`
+        : null
+    }
+  }).filter(m => m.directPrice > 0)
+    .sort((a, b) => b.directPrice - a.directPrice)
+
+  res.json(impact)
+})
+
+// ==================
+// SCREENSHOT ANALYSIS
+// ==================
+
+app.post('/api/analyze/screenshot', upload.single('screenshot'), async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No file uploaded' })
+
+  const target = req.query.target || 'minerals' // 'minerals' | 'alloys' | 'all'
+
+  const minerals = readJSON(MINERALS_FILE) || []
+  const alloys = readJSON(ALLOYS_FILE) || []
+
+  let knownItems = []
+  if (target === 'minerals') knownItems = minerals
+  else if (target === 'alloys') knownItems = alloys
+  else knownItems = [...minerals, ...alloys]
+
+  try {
+    const results = await analyzeInventoryScreenshot(req.file.buffer, knownItems)
+    res.json({ results })
+  } catch (err) {
+    console.error('Screenshot analysis error:', err)
+    res.status(500).json({ error: 'Analysis failed', detail: err.message })
+  }
+})
 
 // Start server
 app.listen(PORT, () => {

@@ -159,6 +159,336 @@
         "x10": 0,
         "x100": 0
       }
+    },
+    {
+      "itemId": "argent",
+      "name": "Argent",
+      "timestamp": "2026-02-26T14:17:58.414Z",
+      "prices": {
+        "x1": 1340,
+        "x10": 0,
+        "x100": 0
+      }
+    },
+    {
+      "itemId": "argent",
+      "name": "Argent",
+      "timestamp": "2026-02-26T14:21:47.430Z",
+      "prices": {
+        "x1": 1370,
+        "x10": 14823,
+        "x100": 148984
+      }
+    },
+    {
+      "itemId": "fer",
+      "name": "Fer",
+      "timestamp": "2026-02-26T14:21:47.436Z",
+      "prices": {
+        "x1": 72,
+        "x10": 440,
+        "x100": 3882
+      }
+    },
+    {
+      "itemId": "cuivre",
+      "name": "Cuivre",
+      "timestamp": "2026-02-26T14:21:47.438Z",
+      "prices": {
+        "x1": 42,
+        "x10": 432,
+        "x100": 1842
+      }
+    },
+    {
+      "itemId": "bronze",
+      "name": "Bronze",
+      "timestamp": "2026-02-26T14:21:47.440Z",
+      "prices": {
+        "x1": 149,
+        "x10": 1495,
+        "x100": 7762
+      }
+    },
+    {
+      "itemId": "kobalte",
+      "name": "Kobalte",
+      "timestamp": "2026-02-26T14:21:47.442Z",
+      "prices": {
+        "x1": 577,
+        "x10": 1167,
+        "x100": 11720
+      }
+    },
+    {
+      "itemId": "manganese",
+      "name": "Manganèse",
+      "timestamp": "2026-02-26T14:21:47.444Z",
+      "prices": {
+        "x1": 334,
+        "x10": 2499,
+        "x100": 15542
+      }
+    },
+    {
+      "itemId": "etain",
+      "name": "Étain",
+      "timestamp": "2026-02-26T14:21:47.447Z",
+      "prices": {
+        "x1": 1099,
+        "x10": 8439,
+        "x100": 74947
+      }
+    },
+    {
+      "itemId": "bauxite",
+      "name": "Bauxite",
+      "timestamp": "2026-02-26T14:21:47.450Z",
+      "prices": {
+        "x1": 694,
+        "x10": 2088,
+        "x100": 16240
+      }
+    },
+    {
+      "itemId": "or",
+      "name": "Or",
+      "timestamp": "2026-02-26T14:21:47.453Z",
+      "prices": {
+        "x1": 699,
+        "x10": 2000,
+        "x100": 18999
+      }
+    },
+    {
+      "itemId": "cendrepierre",
+      "name": "Cendrepierre",
+      "timestamp": "2026-02-26T14:21:47.455Z",
+      "prices": {
+        "x1": 1036,
+        "x10": 7808,
+        "x100": 78799
+      }
+    },
+    {
+      "itemId": "charbon",
+      "name": "Charbon",
+      "timestamp": "2026-02-26T14:21:47.457Z",
+      "prices": {
+        "x1": 1500,
+        "x10": 16000,
+        "x100": 144997
+      }
+    },
+    {
+      "itemId": "silicate",
+      "name": "Silicate",
+      "timestamp": "2026-02-26T14:21:47.459Z",
+      "prices": {
+        "x1": 989,
+        "x10": 1249,
+        "x100": 9989
+      }
+    },
+    {
+      "itemId": "dolomite",
+      "name": "Dolomite",
+      "timestamp": "2026-02-26T14:21:47.462Z",
+      "prices": {
+        "x1": 2458,
+        "x10": 12960,
+        "x100": 79982
+      }
+    },
+    {
+      "itemId": "obsidienne",
+      "name": "Obsidienne",
+      "timestamp": "2026-02-26T14:21:47.463Z",
+      "prices": {
+        "x1": 897,
+        "x10": 7483,
+        "x100": 53991
+      }
+    },
+    {
+      "itemId": "argent",
+      "name": "Argent",
+      "timestamp": "2026-02-26T14:25:23.621Z",
+      "prices": {
+        "x1": 1370,
+        "x10": 14823,
+        "x100": 148984,
+        "x1000": 1359997,
+        "lastUpdated": "2026-02-26T14:25:23.620Z"
+      }
+    },
+    {
+      "itemId": "fer",
+      "name": "Fer",
+      "timestamp": "2026-02-26T14:25:23.628Z",
+      "prices": {
+        "x1": 72,
+        "x10": 440,
+        "x100": 3882,
+        "x1000": 43000,
+        "lastUpdated": "2026-02-26T14:25:23.628Z"
+      }
+    },
+    {
+      "itemId": "cuivre",
+      "name": "Cuivre",
+      "timestamp": "2026-02-26T14:25:23.631Z",
+      "prices": {
+        "x1": 42,
+        "x10": 432,
+        "x100": 1842,
+        "x1000": 15000,
+        "lastUpdated": "2026-02-26T14:25:23.631Z"
+      }
+    },
+    {
+      "itemId": "bronze",
+      "name": "Bronze",
+      "timestamp": "2026-02-26T14:25:23.633Z",
+      "prices": {
+        "x1": 149,
+        "x10": 1495,
+        "x100": 7762,
+        "x1000": 79999,
+        "lastUpdated": "2026-02-26T14:25:23.633Z"
+      }
+    },
+    {
+      "itemId": "kobalte",
+      "name": "Kobalte",
+      "timestamp": "2026-02-26T14:25:23.635Z",
+      "prices": {
+        "x1": 577,
+        "x10": 1167,
+        "x100": 11720,
+        "x1000": 109992,
+        "lastUpdated": "2026-02-26T14:25:23.635Z"
+      }
+    },
+    {
+      "itemId": "manganese",
+      "name": "Manganèse",
+      "timestamp": "2026-02-26T14:25:23.637Z",
+      "prices": {
+        "x1": 334,
+        "x10": 2499,
+        "x100": 15542,
+        "x1000": 149998,
+        "lastUpdated": "2026-02-26T14:25:23.637Z"
+      }
+    },
+    {
+      "itemId": "etain",
+      "name": "Étain",
+      "timestamp": "2026-02-26T14:25:23.639Z",
+      "prices": {
+        "x1": 1099,
+        "x10": 8439,
+        "x100": 74947,
+        "x1000": 749998,
+        "lastUpdated": "2026-02-26T14:25:23.639Z"
+      }
+    },
+    {
+      "itemId": "bauxite",
+      "name": "Bauxite",
+      "timestamp": "2026-02-26T14:25:23.641Z",
+      "prices": {
+        "x1": 694,
+        "x10": 2088,
+        "x100": 16240,
+        "x1000": 169887,
+        "lastUpdated": "2026-02-26T14:25:23.641Z"
+      }
+    },
+    {
+      "itemId": "or",
+      "name": "Or",
+      "timestamp": "2026-02-26T14:25:23.644Z",
+      "prices": {
+        "x1": 699,
+        "x10": 2000,
+        "x100": 18999,
+        "x1000": 148000,
+        "lastUpdated": "2026-02-26T14:25:23.644Z"
+      }
+    },
+    {
+      "itemId": "cendrepierre",
+      "name": "Cendrepierre",
+      "timestamp": "2026-02-26T14:25:23.646Z",
+      "prices": {
+        "x1": 1036,
+        "x10": 7808,
+        "x100": 78799,
+        "x1000": 725994,
+        "lastUpdated": "2026-02-26T14:25:23.646Z"
+      }
+    },
+    {
+      "itemId": "charbon",
+      "name": "Charbon",
+      "timestamp": "2026-02-26T14:25:23.648Z",
+      "prices": {
+        "x1": 1500,
+        "x10": 16000,
+        "x100": 144997,
+        "x1000": 1444444,
+        "lastUpdated": "2026-02-26T14:25:23.648Z"
+      }
+    },
+    {
+      "itemId": "silicate",
+      "name": "Silicate",
+      "timestamp": "2026-02-26T14:25:23.650Z",
+      "prices": {
+        "x1": 989,
+        "x10": 1249,
+        "x100": 9989,
+        "x1000": 80000,
+        "lastUpdated": "2026-02-26T14:25:23.650Z"
+      }
+    },
+    {
+      "itemId": "dolomite",
+      "name": "Dolomite",
+      "timestamp": "2026-02-26T14:25:23.652Z",
+      "prices": {
+        "x1": 2458,
+        "x10": 12960,
+        "x100": 79982,
+        "x1000": 799999,
+        "lastUpdated": "2026-02-26T14:25:23.652Z"
+      }
+    },
+    {
+      "itemId": "obsidienne",
+      "name": "Obsidienne",
+      "timestamp": "2026-02-26T14:25:23.654Z",
+      "prices": {
+        "x1": 897,
+        "x10": 7483,
+        "x100": 53991,
+        "x1000": 604990,
+        "lastUpdated": "2026-02-26T14:25:23.654Z"
+      }
+    },
+    {
+      "itemId": "cristal-pliable",
+      "name": "Cristal pliable",
+      "timestamp": "2026-02-26T17:53:33.263Z",
+      "prices": {
+        "x1": 100,
+        "x10": 0,
+        "x100": 0,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T17:53:33.263Z"
+      }
     }
   ],
   "alloys": [
@@ -250,6 +580,270 @@
         "x1": 1000,
         "x10": 10000000,
         "x100": 0
+      }
+    },
+    {
+      "itemId": "ferrite",
+      "name": "Ferrite",
+      "timestamp": "2026-02-26T14:24:35.332Z",
+      "prices": {
+        "x1": 48,
+        "x10": 290,
+        "x100": 4000
+      }
+    },
+    {
+      "itemId": "aluminite",
+      "name": "Aluminite",
+      "timestamp": "2026-02-26T14:24:35.337Z",
+      "prices": {
+        "x1": 148,
+        "x10": 1200,
+        "x100": 26999
+      }
+    },
+    {
+      "itemId": "ebonite",
+      "name": "Ébonite",
+      "timestamp": "2026-02-26T14:24:35.339Z",
+      "prices": {
+        "x1": 1996,
+        "x10": 17998,
+        "x100": 229902
+      }
+    },
+    {
+      "itemId": "magnesite",
+      "name": "Magnésite",
+      "timestamp": "2026-02-26T14:24:35.341Z",
+      "prices": {
+        "x1": 2982,
+        "x10": 24970,
+        "x100": 238894
+      }
+    },
+    {
+      "itemId": "bakelelite",
+      "name": "Bakélélite",
+      "timestamp": "2026-02-26T14:24:35.343Z",
+      "prices": {
+        "x1": 5396,
+        "x10": 53560,
+        "x100": 499997
+      }
+    },
+    {
+      "itemId": "kouartz",
+      "name": "Kouartz",
+      "timestamp": "2026-02-26T14:24:35.345Z",
+      "prices": {
+        "x1": 8864,
+        "x10": 76882,
+        "x100": 699999
+      }
+    },
+    {
+      "itemId": "plaque",
+      "name": "plaque",
+      "timestamp": "2026-02-26T14:24:35.347Z",
+      "prices": {
+        "x1": 19995,
+        "x10": 209999,
+        "x100": 0
+      }
+    },
+    {
+      "itemId": "kriptonite",
+      "name": "Kriptonite",
+      "timestamp": "2026-02-26T14:24:35.348Z",
+      "prices": {
+        "x1": 19116,
+        "x10": 199982,
+        "x100": 2148999
+      }
+    },
+    {
+      "itemId": "kobalite",
+      "name": "Kobalite",
+      "timestamp": "2026-02-26T14:24:35.350Z",
+      "prices": {
+        "x1": 19991,
+        "x10": 189979,
+        "x100": 1999994
+      }
+    },
+    {
+      "itemId": "rutile",
+      "name": "Rutile",
+      "timestamp": "2026-02-26T14:24:35.352Z",
+      "prices": {
+        "x1": 7500,
+        "x10": 75000,
+        "x100": 890900
+      }
+    },
+    {
+      "itemId": "pyrute",
+      "name": "Pyrute",
+      "timestamp": "2026-02-26T14:24:35.354Z",
+      "prices": {
+        "x1": 24592,
+        "x10": 219994,
+        "x100": 2209999
+      }
+    },
+    {
+      "itemId": "ardonite",
+      "name": "Ardonite",
+      "timestamp": "2026-02-26T14:24:35.356Z",
+      "prices": {
+        "x1": 47944,
+        "x10": 389990,
+        "x100": 4145550
+      }
+    },
+    {
+      "itemId": "ferrite",
+      "name": "Ferrite",
+      "timestamp": "2026-02-26T14:25:23.656Z",
+      "prices": {
+        "x1": 48,
+        "x10": 290,
+        "x100": 4000,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.656Z"
+      }
+    },
+    {
+      "itemId": "aluminite",
+      "name": "Aluminite",
+      "timestamp": "2026-02-26T14:25:23.658Z",
+      "prices": {
+        "x1": 148,
+        "x10": 1200,
+        "x100": 26999,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.658Z"
+      }
+    },
+    {
+      "itemId": "ebonite",
+      "name": "Ébonite",
+      "timestamp": "2026-02-26T14:25:23.659Z",
+      "prices": {
+        "x1": 1996,
+        "x10": 17998,
+        "x100": 229902,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.659Z"
+      }
+    },
+    {
+      "itemId": "magnesite",
+      "name": "Magnésite",
+      "timestamp": "2026-02-26T14:25:23.661Z",
+      "prices": {
+        "x1": 2982,
+        "x10": 24970,
+        "x100": 238894,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.661Z"
+      }
+    },
+    {
+      "itemId": "bakelelite",
+      "name": "Bakélélite",
+      "timestamp": "2026-02-26T14:25:23.663Z",
+      "prices": {
+        "x1": 5396,
+        "x10": 53560,
+        "x100": 499997,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.663Z"
+      }
+    },
+    {
+      "itemId": "kouartz",
+      "name": "Kouartz",
+      "timestamp": "2026-02-26T14:25:23.665Z",
+      "prices": {
+        "x1": 8864,
+        "x10": 76882,
+        "x100": 699999,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.665Z"
+      }
+    },
+    {
+      "itemId": "plaque",
+      "name": "plaque",
+      "timestamp": "2026-02-26T14:25:23.666Z",
+      "prices": {
+        "x1": 19995,
+        "x10": 209999,
+        "x100": 0,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.666Z"
+      }
+    },
+    {
+      "itemId": "kriptonite",
+      "name": "Kriptonite",
+      "timestamp": "2026-02-26T14:25:23.668Z",
+      "prices": {
+        "x1": 19116,
+        "x10": 199982,
+        "x100": 2148999,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.668Z"
+      }
+    },
+    {
+      "itemId": "kobalite",
+      "name": "Kobalite",
+      "timestamp": "2026-02-26T14:25:23.670Z",
+      "prices": {
+        "x1": 19991,
+        "x10": 189979,
+        "x100": 1999994,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.670Z"
+      }
+    },
+    {
+      "itemId": "rutile",
+      "name": "Rutile",
+      "timestamp": "2026-02-26T14:25:23.672Z",
+      "prices": {
+        "x1": 7500,
+        "x10": 75000,
+        "x100": 890900,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.672Z"
+      }
+    },
+    {
+      "itemId": "pyrute",
+      "name": "Pyrute",
+      "timestamp": "2026-02-26T14:25:23.674Z",
+      "prices": {
+        "x1": 24592,
+        "x10": 219994,
+        "x100": 2209999,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.674Z"
+      }
+    },
+    {
+      "itemId": "ardonite",
+      "name": "Ardonite",
+      "timestamp": "2026-02-26T14:25:23.675Z",
+      "prices": {
+        "x1": 47944,
+        "x10": 389990,
+        "x100": 4145550,
+        "x1000": 0,
+        "lastUpdated": "2026-02-26T14:25:23.675Z"
       }
     }
   ]

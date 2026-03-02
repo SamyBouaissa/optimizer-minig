@@ -57,10 +57,42 @@ export async function getAllPriceHistory() {
 }
 
 // Optimizer API
-export async function calculateOptimal(inventory) {
+export async function calculateOptimal(inventory, avoidX1000 = false) {
   return fetchJSON(`${API_BASE}/optimize`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ inventory, avoidX1000 })
+  })
+}
+
+export async function getSuggestions(inventory) {
+  return fetchJSON(`${API_BASE}/optimize/suggestions`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ inventory })
   })
+}
+
+export async function getImpactAnalysis() {
+  return fetchJSON(`${API_BASE}/analyze/impact`)
+}
+
+/**
+ * Upload a screenshot for automatic inventory recognition.
+ * @param {File} file - The image file to analyze
+ * @param {'minerals'|'alloys'|'all'} target - Which items to match against
+ * @returns {Promise<{results: Array<{itemId, name, quantity, confidence}>}>}
+ */
+export async function analyzeScreenshot(file, target = 'minerals') {
+  const formData = new FormData()
+  formData.append('screenshot', file)
+  const res = await fetch(`${API_BASE}/analyze/screenshot?target=${target}`, {
+    method: 'POST',
+    body: formData
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || `HTTP ${res.status}`)
+  }
+  return res.json()
 }
